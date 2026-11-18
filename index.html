@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemática - Portal de Física</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="accessibility-buttons">
+            <button id="aumentarFonte" title="Aumentar tamanho da fonte">A+</button>
+            <button id="diminuirFonte" title="Diminuir tamanho da fonte">A-</button>
+            <button id="altoContraste" title="Alternar modo de alto contraste">Alto Contraste</button>
+        </div>
+        <h1>Bem-vindo ao Portal da Cinemática!</h1>
+    </header>
+
+    <main>
+        <div class="cinematica-container">
+            <!-- 1. Esquema visual próprio de Cinemática (SVG em tons de azul) -->
+            <svg viewBox="0 0 800 260" class="cinematica-image" style="background: linear-gradient(135deg, #071952, #023e8a); margin-bottom: 18px;" role="img" aria-label="Esquema de Cinemática mostrando trajetória parabólica, velocidade e aceleração">
+                <defs>
+                    <pattern id="gridAzul" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(144, 224, 239, 0.12)" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="800" height="260" fill="url(#gridAzul)" />
+
+                <!-- Eixos de referência -->
+                <line x1="70" y1="210" x2="740" y2="210" stroke="#90e0ef" stroke-width="2.5" />
+                <line x1="70" y1="210" x2="70" y2="35" stroke="#90e0ef" stroke-width="2.5" />
+                <text x="748" y="215" fill="#caf0f8" font-size="15" font-weight="bold">S / x</text>
+                <text x="58" y="26" fill="#caf0f8" font-size="15" font-weight="bold">y / h</text>
+
+                <!-- Trajetória parabólica -->
+                <path d="M 90 205 Q 360 20 650 205" fill="none" stroke="#48cae4" stroke-width="4" stroke-dasharray="8,6" />
+
+                <!-- Móvel em movimento -->
+                <circle cx="360" cy="112" r="14" fill="#00b4d8" stroke="#ffffff" stroke-width="3" />
+
+                <!-- Vetor velocidade -->
+                <line x1="360" y1="112" x2="465" y2="112" stroke="#ffffff" stroke-width="3" />
+                <polygon points="465,106 480,112 465,118" fill="#ffffff" />
+                <text x="415" y="100" fill="#ffffff" font-size="15" font-weight="bold">v</text>
+
+                <!-- Vetor aceleração / gravidade -->
+                <line x1="360" y1="112" x2="360" y2="175" stroke="#90e0ef" stroke-width="3" />
+                <polygon points="354,175 360,190 366,175" fill="#90e0ef" />
+                <text x="372" y="168" fill="#90e0ef" font-size="15" font-weight="bold">a / g</text>
+
+                <!-- Rótulos técnicos -->
+                <text x="525" y="55" fill="#ffffff" font-size="18" font-weight="bold">CINEMÁTICA</text>
+                <text x="525" y="80" fill="#caf0f8" font-size="14">S = S₀ + v·t  |  v = v₀ + a·t</text>
+            </svg>
+
+            <!-- 2. Imagem temática de equações e gráficos de Física -->
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop" alt="Equações de cinemática e gráficos de física" class="cinematica-image">
+        </div>
+       
+        <div class="description-box">
+            <h2>O que é a Cinemática?</h2>
+            <p>
+                A Cinemática é o ramo da Física (dentro da Mecânica Clássica) que estuda e descreve o movimento dos corpos sem se preocupar com as causas que o provocam, como forças ou massas. Para analisar qualquer deslocamento, utilizamos conceitos fundamentais como <strong>referencial</strong>, <strong>trajetória</strong>, <strong>posição</strong>, <strong>velocidade</strong> e <strong>aceleração</strong>.
+            </p>
+            <p>
+                Dependendo de como a velocidade e a trajetória se comportam ao longo do tempo, dividimos a cinemática em diferentes tipos de movimento: retilíneo uniforme (MRU), uniformemente variado (MRUV), movimentos verticais sob ação da gravidade, lançamentos bidimensionais e movimentos circulares (MCU).
+            </p>
+        </div>
+       
+        <div class="topics-container">
+            <div class="topic-box mru" onclick="showFormula('MRU — Movimento Retilíneo Uniforme\n\n• Função Horária: S = S₀ + v · t\n• Velocidade Média: v = ΔS / Δt\n• Aceleração: a = 0')">
+                <div class="topic-badge">MRU</div>
+                <h2>Movimento Uniforme</h2>
+                <p>Velocidade constante e aceleração nula. Clique para ver as fórmulas.</p>
+            </div>
+            <div class="topic-box mruv" onclick="showFormula('MRUV — Uniformemente Variado\n\n• Velocidade: v = v₀ + a · t\n• Posição: S = S₀ + v₀ · t + ½ · a · t²\n• Equação de Torricelli: v² = v₀² + 2 · a · ΔS')">
+                <div class="topic-badge">MRUV</div>
+                <h2>Uniformemente Variado</h2>
+                <p>Aceleração constante e variação de velocidade. Clique para ver as fórmulas.</p>
+            </div>
+            <div class="topic-box vertical" onclick="showFormula('Queda Livre e Lançamento Vertical\n\n• Altura: h = v₀ · t ± ½ · g · t²\n• Velocidade: v = v₀ ± g · t\n• Torricelli Vertical: v² = v₀² ± 2 · g · h')">
+                <div class="topic-badge">g</div>
+                <h2>Queda Livre</h2>
+                <p>Movimentos verticais sob ação da gravidade. Clique para ver as fórmulas.</p>
+            </div>
+            <div class="topic-box mcu" onclick="showFormula('MCU — Movimento Circular Uniforme\n\n• Velocidade Angular: ω = 2π / T = 2π · f\n• Velocidade Linear: v = ω · R\n• Aceleração Centrípeta: acp = v² / R')">
+                <div class="topic-badge">MCU</div>
+                <h2>Movimento Circular</h2>
+                <p>Trajetória circular com período e frequência. Clique para ver as fórmulas.</p>
+            </div>
+        </div>
+
+        <section class="calculator-container">
+            <h2>Calculadora Interativa de Cinemática</h2>
+            <p class="calc-subtitle">Escolha o tipo de movimento, preencha os valores no Sistema Internacional (m, s, m/s) e calcule o resultado na hora.</p>
+           
+            <div class="calc-controls">
+                <label for="tipoCalculo"><strong>Selecione a Fórmula:</strong></label>
+                <select id="tipoCalculo" onchange="atualizarCamposCalculadora()">
+                    <option value="vm">Velocidade Média (v = ΔS / Δt)</option>
+                    <option value="mru">Posição Final no MRU (S = S₀ + v · t)</option>
+                    <option value="mruv">Velocidade Final no MRUV (v = v₀ + a · t)</option>
+                    <option value="queda">Queda Livre: Altura e Velocidade (g = 10 m/s²)</option>
+                </select>
+
+                <div id="camposEntrada" class="calc-inputs"></div>
+
+                <button type="button" class="calc-btn" onclick="calcularCinematica()">Calcular Resultado</button>
+            </div>
+
+            <div id="resultadoCalc" class="calc-result" style="display: none;"></div>
+        </section>
+
+        <!-- Tabela Resumo de Fórmulas -->
+        <section class="description-box" style="margin-top: 30px;">
+            <h2>Tabela Resumo das Fórmulas de Cinemática</h2>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr style="background-color: var(--cor-primaria-escura); color: white;">
+                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Tipo</th>
+                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Função Horária da Posição</th>
+                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Equação da Velocidade</th>
+                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Torricelli</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;"><strong>MRU</strong></td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">S = S₀ + v · t</td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">v = constante</td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">—</td>
+                        </tr>
+                        <tr style="background-color: #f8fbff;">
+                            <td style="padding: 10px; border: 1px solid #bde0fe;"><strong>MRUV</strong></td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">S = S₀ + v₀t + ½at²</td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">v = v₀ + a · t</td>
+                            <td style="padding: 10px; border: 1px solid #bde0fe;">v² = v₀² + 2aΔS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Link para Simuladores Interativos PhET Colorado -->
+        <section class="description-box" style="border-left: 6px solid #0077b6; background: linear-gradient(135deg, #e0f2fe, #f0f8ff);">
+            <h2>🧪 Laboratório Virtual e Testes Interativos (PhET Colorado)</h2>
+            <p>
+                Quer testar os conceitos de cinemática na prática com simulações visuais em tempo real? Acesse os laboratórios virtuais gratuitos do <strong>PhET Colorado</strong>:
+            </p>
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="https://phet.colorado.edu/pt/simulations/filter?subjects=physics&q=motion" target="_blank" rel="noopener noreferrer" style="background-color: #0077b6; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                    Acessar Simuladores de Movimento no PhET Colorado 🚀
+                </a>
+            </p>
+        </section>
+
+        <!-- Quiz Completo com 6 Perguntas -->
+        <section class="calculator-container">
+            <h2>Quiz Relâmpago: 6 Desafios de Cinemática</h2>
+            <p class="calc-subtitle">Responda às questões abaixo e clique no botão para conferir seu desempenho:</p>
+            
+            <div style="text-align: left; max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px;">
+                <div>
+                    <p><strong>1. Um carro em MRU percorre 120 km em 2 horas. Qual é a sua velocidade média?</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p1" value="errado"> A) 40 km/h</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p1" value="certo" id="p1_certa"> B) 60 km/h</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p1" value="errado"> C) 80 km/h</label>
+                </div>
+
+                <div>
+                    <p><strong>2. No Movimento Retilíneo Uniforme (MRU), a aceleração escalar do corpo é sempre igual a:</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p2" value="errado"> A) 9,8 m/s²</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p2" value="errado"> B) Um valor constante diferente de zero</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p2" value="certo" id="p2_certa"> C) Zero (0)</label>
+                </div>
+
+                <div>
+                    <p><strong>3. Qual das equações abaixo representa a Equação de Torricelli no MRUV?</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p3" value="certo" id="p3_certa"> A) v² = v₀² + 2 · a · ΔS</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p3" value="errado"> B) S = S₀ + v · t</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p3" value="errado"> C) v = ΔS / Δt</label>
+                </div>
+
+                <div>
+                    <p><strong>4. Na queda livre (desprezando a resistência do ar), a aceleração que atua no corpo é:</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p4" value="errado"> A) A velocidade do som</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p4" value="certo" id="p4_certa"> B) A aceleração da gravidade (g)</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p4" value="errado"> C) Sempre nula</label>
+                </div>
+
+                <div>
+                    <p><strong>5. No Movimento Circular Uniforme (MCU), o que permanece constante em módulo é a:</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p5" value="certo" id="p5_certa"> A) Velocidade escalar (v)</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p5" value="errado"> B) Aceleração centrípeta nula</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p5" value="errado"> C) Direção do vetor velocidade</label>
+                </div>
+
+                <div>
+                    <p><strong>6. Um móvel parte da posição inicial S₀ = 10m com velocidade constante v = 5 m/s. Qual sua posição após 4 segundos?</strong></p>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p6" value="errado"> A) 20 metros</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p6" value="errado"> B) 25 metros</label>
+                    <label style="display: block; margin: 6px 0; cursor: pointer;"><input type="radio" name="p6" value="certo" id="p6_certa"> C) 30 metros</label>
+                </div>
+
+                <button type="button" class="calc-btn" onclick="verificarQuiz6()">Verificar Respostas do Quiz</button>
+                <div id="resultadoQuiz" style="margin-top: 15px; font-size: 1.2em; font-weight: bold; text-align: center;"></div>
+            </div>
+        </section>
+
+        <div class="video-container">
+            <h2>Aula Introdutória: Conceitos Básicos da Cinemática</h2>
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Aula de Cinemática" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="characteristics-container">
+            <h2>Todos os Tópicos da Cinemática</h2>
+           
+            <div class="characteristic-box mru">
+                <h3>1. Conceitos Fundamentais</h3>
+                <p><strong>Referencial:</strong> Ponto adotado para definir se um corpo está em repouso ou movimento. <strong>Velocidade Média (v = ΔS/Δt):</strong> Razão entre o deslocamento e o tempo.</p>
+            </div>
+
+            <div class="characteristic-box mruv">
+                <h3>2. Movimento Retilíneo Uniforme (MRU)</h3>
+                <p>Ocorre em linha reta com velocidade escalar constante e diferente de zero (aceleração nula). Sua função horária da posição é <strong>S = S₀ + v·t</strong>.</p>
+            </div>
+
+            <div class="characteristic-box vertical">
+                <h3>3. Movimento Retilíneo Uniformemente Variado (MRUV)</h3>
+                <p>Ocorre em linha reta com aceleração constante e não nula. Principais equações: Velocidade (<strong>v = v₀ + a·t</strong>) e Torricelli (<strong>v² = v₀² + 2·a·ΔS</strong>).</p>
+            </div>
+
+            <div class="characteristic-box mcu">
+                <h3>4. Movimento Circular Uniforme (MCU)</h3>
+                <p>Trajetória circular com velocidade escalar constante em módulo, mas direção variável devido à <strong>aceleração centrípeta (acp = v²/R)</strong>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Portal de Física — Explorando as leis do movimento.</p>
+    </footer>
+
+    <div id="formulaModal" class="modal" onclick="closeFormula()">
+        <span class="close">×</span>
+        <div class="modal-content" id="modalText"></div>
+    </div>
+
+    <script>
+        let fontSize = 16;
+        document.getElementById('aumentarFonte').addEventListener('click', () => {
+            fontSize += 2;
+            document.body.style.fontSize = fontSize + 'px';
+        });
+
+        document.getElementById('diminuirFonte').addEventListener('click', () => {
+            if (fontSize > 12) {
+                fontSize -= 2;
+                document.body.style.fontSize = fontSize + 'px';
+            }
+        });
+
+        document.getElementById('altoContraste').addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+        });
+
+        function showFormula(texto) {
+            const modal = document.getElementById('formulaModal');
+            const modalText = document.getElementById('modalText');
+            modalText.innerText = texto;
+            modal.style.display = "block";
+        }
+
+        function closeFormula() {
+            document.getElementById('formulaModal').style.display = "none";
+        }
+
+        function atualizarCamposCalculadora() {
+            const tipo = document.getElementById('tipoCalculo').value;
+            const container = document.getElementById('camposEntrada');
+            container.innerHTML = '';
+
+            if (tipo === 'vm') {
+                container.innerHTML = `
+                    <div class="input-group"><label>Variação de Espaço (ΔS em metros):</label><input type="number" id="deltaS" placeholder="Ex: 100"></div>
+                    <div class="input-group"><label>Variação de Tempo (Δt em segundos):</label><input type="number" id="deltaT" placeholder="Ex: 10"></div>
+                `;
+            } else if (tipo === 'mru') {
+                container.innerHTML = `
+                    <div class="input-group"><label>Posição Inicial (S₀):</label><input type="number" id="s0" placeholder="Ex: 10"></div>
+                    <div class="input-group"><label>Velocidade (v):</label><input type="number" id="v" placeholder="Ex: 20"></div>
+                    <div class="input-group"><label>Tempo (t):</label><input type="number" id="t" placeholder="Ex: 5"></div>
+                `;
+            } else if (tipo === 'mruv') {
+                container.innerHTML = `
+                    <div class="input-group"><label>Velocidade Inicial (v₀):</label><input type="number" id="v0" placeholder="Ex: 0"></div>
+                    <div class="input-group"><label>Aceleração (a):</label><input type="number" id="a" placeholder="Ex: 2"></div>
+                    <div class="input-group"><label>Tempo (t):</label><input type="number" id="t_mruv" placeholder="Ex: 4"></div>
+                `;
+            } else if (tipo === 'queda') {
+                container.innerHTML = `
+                    <div class="input-group"><label>Tempo de Queda (t em segundos):</label><input type="number" id="t_queda" placeholder="Ex: 3"></div>
+                `;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", atualizarCamposCalculadora);
+
+        function calcularCinematica() {
+            const tipo = document.getElementById('tipoCalculo').value;
+            const resultadoDiv = document.getElementById('resultadoCalc');
+            resultadoDiv.style.display = "block";
+
+            if (tipo === 'vm') {
+                let dS = parseFloat(document.getElementById('deltaS').value);
+                let dT = parseFloat(document.getElementById('deltaT').value);
+                if (isNaN(dS) || isNaN(dT) || dT === 0) {
+                    resultadoDiv.innerText = "Por favor, preencha valores válidos (Δt não pode ser zero).";
+                    return;
+                }
+                let vm = dS / dT;
+                resultadoDiv.innerText = `Velocidade Média (v) = ${vm.toFixed(2)} m/s`;
+            } else if (tipo === 'mru') {
+                let s0 = parseFloat(document.getElementById('s0').value) || 0;
+                let v = parseFloat(document.getElementById('v').value) || 0;
+                let t = parseFloat(document.getElementById('t').value) || 0;
+                let s = s0 + (v * t);
+                resultadoDiv.innerText = `Posição Final (S) = ${s.toFixed(2)} metros`;
+            } else if (tipo === 'mruv') {
+                let v0 = parseFloat(document.getElementById('v0').value) || 0;
+                let a = parseFloat(document.getElementById('a').value) || 0;
+                let t = parseFloat(document.getElementById('t_mruv').value) || 0;
+                let v = v0 + (a * t);
+                resultadoDiv.innerText = `Velocidade Final (v) = ${v.toFixed(2)} m/s`;
+            } else if (tipo === 'queda') {
+                let t = parseFloat(document.getElementById('t_queda').value) || 0;
+                let g = 10;
+                let h = 0.5 * g * (t ** 2);
+                let v = g * t;
+                resultadoDiv.innerText = `Altura da Queda (h) = ${h.toFixed(2)} m | Velocidade de Impacto = ${v.toFixed(2)} m/s`;
+            }
+        }
+
+        function verificarQuiz6() {
+            let acertos = 0;
+            if (document.getElementById('p1_certa').checked) acertos++;
+            if (document.getElementById('p2_certa').checked) acertos++;
+            if (document.getElementById('p3_certa').checked) acertos++;
+            if (document.getElementById('p4_certa').checked) acertos++;
+            if (document.getElementById('p5_certa').checked) acertos++;
+            if (document.getElementById('p6_certa').checked) acertos++;
+
+            const resDiv = document.getElementById('resultadoQuiz');
+            resDiv.style.color = acertos === 6 ? "#0077b6" : "#023e8a";
+            resDiv.innerText = `🎯 Você acertou ${acertos} de 6 perguntas! (${(acertos/6*100).toFixed(0)}%)`;
+        }
+    </script>
+</body>
+</html>
