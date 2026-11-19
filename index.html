@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header id="topo">
         <div class="accessibility-buttons">
             <button id="aumentarFonte" title="Aumentar tamanho da fonte">A+</button>
             <button id="diminuirFonte" title="Diminuir tamanho da fonte">A-</button>
@@ -21,46 +21,36 @@
 
     <main>
         <div class="cinematica-container">
-            <!-- 1. Esquema visual próprio de Cinemática (SVG em tons de azul) -->
-            <svg viewBox="0 0 800 260" class="cinematica-image" style="background: linear-gradient(135deg, #071952, #023e8a); margin-bottom: 18px;" role="img" aria-label="Esquema de Cinemática mostrando trajetória parabólica, velocidade e aceleração">
+            <svg viewBox="0 0 800 260" class="cinematica-image" style="background: linear-gradient(135deg, #1d2d44, #0b192c);" role="img" aria-label="Esquema de Cinemática mostrando trajetória parabólica, velocidade e aceleração">
                 <defs>
-                    <pattern id="gridAzul" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(144, 224, 239, 0.12)" stroke-width="1"/>
+                    <pattern id="gridPista" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 209, 102, 0.14)" stroke-width="1"/>
                     </pattern>
                 </defs>
-                <rect width="800" height="260" fill="url(#gridAzul)" />
+                <rect width="800" height="260" fill="url(#gridPista)" />
 
-                <!-- Eixos de referência -->
-                <line x1="70" y1="210" x2="740" y2="210" stroke="#90e0ef" stroke-width="2.5" />
-                <line x1="70" y1="210" x2="70" y2="35" stroke="#90e0ef" stroke-width="2.5" />
-                <text x="748" y="215" fill="#caf0f8" font-size="15" font-weight="bold">S / x</text>
-                <text x="58" y="26" fill="#caf0f8" font-size="15" font-weight="bold">y / h</text>
+                <line x1="70" y1="210" x2="740" y2="210" stroke="#ffd166" stroke-width="2.5" />
+                <line x1="70" y1="210" x2="70" y2="35" stroke="#ffd166" stroke-width="2.5" />
+                <text x="748" y="215" fill="#ffd166" font-size="15" font-weight="bold">S / x</text>
+                <text x="58" y="26" fill="#ffd166" font-size="15" font-weight="bold">y / h</text>
 
-                <!-- Trajetória parabólica -->
-                <path d="M 90 205 Q 360 20 650 205" fill="none" stroke="#48cae4" stroke-width="4" stroke-dasharray="8,6" />
+                <path d="M 90 205 Q 360 20 650 205" fill="none" stroke="#ef233c" stroke-width="4" stroke-dasharray="8,6" />
 
-                <!-- Móvel em movimento -->
-                <circle cx="360" cy="112" r="14" fill="#00b4d8" stroke="#ffffff" stroke-width="3" />
+                <circle cx="360" cy="112" r="14" fill="#ef233c" stroke="#ffd166" stroke-width="3" />
 
-                <!-- Vetor velocidade -->
                 <line x1="360" y1="112" x2="465" y2="112" stroke="#ffffff" stroke-width="3" />
                 <polygon points="465,106 480,112 465,118" fill="#ffffff" />
                 <text x="415" y="100" fill="#ffffff" font-size="15" font-weight="bold">v</text>
 
-                <!-- Vetor aceleração / gravidade -->
-                <line x1="360" y1="112" x2="360" y2="175" stroke="#90e0ef" stroke-width="3" />
-                <polygon points="354,175 360,190 366,175" fill="#90e0ef" />
-                <text x="372" y="168" fill="#90e0ef" font-size="15" font-weight="bold">a / g</text>
+                <line x1="360" y1="112" x2="360" y2="175" stroke="#ffd166" stroke-width="3" />
+                <polygon points="354,175 360,190 366,175" fill="#ffd166" />
+                <text x="372" y="168" fill="#ffd166" font-size="15" font-weight="bold">a / g</text>
 
-                <!-- Rótulos técnicos -->
                 <text x="525" y="55" fill="#ffffff" font-size="18" font-weight="bold">CINEMÁTICA</text>
-                <text x="525" y="80" fill="#caf0f8" font-size="14">S = S₀ + v·t  |  v = v₀ + a·t</text>
+                <text x="525" y="80" fill="#ffd166" font-size="14">S = S₀ + v·t  |  v = v₀ + a·t</text>
             </svg>
-
-            <!-- 2. Imagem temática de equações e gráficos de Física -->
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop" alt="Equações de cinemática e gráficos de física" class="cinematica-image">
         </div>
-       
+
         <div class="description-box">
             <h2>O que é a Cinemática?</h2>
             <p>
@@ -70,34 +60,141 @@
                 Dependendo de como a velocidade e a trajetória se comportam ao longo do tempo, dividimos a cinemática em diferentes tipos de movimento: retilíneo uniforme (MRU), uniformemente variado (MRUV), movimentos verticais sob ação da gravidade, lançamentos bidimensionais e movimentos circulares (MCU).
             </p>
         </div>
-       
+
         <div class="topics-container">
-            <div class="topic-box mru" onclick="showFormula('MRU — Movimento Retilíneo Uniforme\n\n• Função Horária: S = S₀ + v · t\n• Velocidade Média: v = ΔS / Δt\n• Aceleração: a = 0')">
+            <div class="topic-box mru" onclick="flipAndShowFormula(this, 'MRU — Movimento Retilíneo Uniforme\n\n• Função Horária: S = S₀ + v · t\n• Velocidade Média: v = ΔS / Δt\n• Aceleração: a = 0')">
                 <div class="topic-badge">MRU</div>
                 <h2>Movimento Uniforme</h2>
-                <p>Velocidade constante e aceleração nula. Clique para ver as fórmulas.</p>
+                <p>Velocidade constante e aceleração nula. Clique para girar e ver as fórmulas.</p>
             </div>
-            <div class="topic-box mruv" onclick="showFormula('MRUV — Uniformemente Variado\n\n• Velocidade: v = v₀ + a · t\n• Posição: S = S₀ + v₀ · t + ½ · a · t²\n• Equação de Torricelli: v² = v₀² + 2 · a · ΔS')">
+            <div class="topic-box mruv" onclick="flipAndShowFormula(this, 'MRUV — Uniformemente Variado\n\n• Velocidade: v = v₀ + a · t\n• Posição: S = S₀ + v₀ · t + ½ · a · t²\n• Equação de Torricelli: v² = v₀² + 2 · a · ΔS')">
                 <div class="topic-badge">MRUV</div>
                 <h2>Uniformemente Variado</h2>
-                <p>Aceleração constante e variação de velocidade. Clique para ver as fórmulas.</p>
+                <p>Aceleração constante e variação de velocidade. Clique para girar e ver as fórmulas.</p>
             </div>
-            <div class="topic-box vertical" onclick="showFormula('Queda Livre e Lançamento Vertical\n\n• Altura: h = v₀ · t ± ½ · g · t²\n• Velocidade: v = v₀ ± g · t\n• Torricelli Vertical: v² = v₀² ± 2 · g · h')">
+            <div class="topic-box vertical" onclick="flipAndShowFormula(this, 'Queda Livre e Lançamento Vertical\n\n• Altura: h = v₀ · t ± ½ · g · t²\n• Velocidade: v = v₀ ± g · t\n• Torricelli Vertical: v² = v₀² ± 2 · g · h')">
                 <div class="topic-badge">g</div>
                 <h2>Queda Livre</h2>
-                <p>Movimentos verticais sob ação da gravidade. Clique para ver as fórmulas.</p>
+                <p>Movimentos verticais sob ação da gravidade. Clique para girar e ver as fórmulas.</p>
             </div>
-            <div class="topic-box mcu" onclick="showFormula('MCU — Movimento Circular Uniforme\n\n• Velocidade Angular: ω = 2π / T = 2π · f\n• Velocidade Linear: v = ω · R\n• Aceleração Centrípeta: acp = v² / R')">
+            <div class="topic-box mcu" onclick="flipAndShowFormula(this, 'MCU — Movimento Circular Uniforme\n\n• Velocidade Angular: ω = 2π / T = 2π · f\n• Velocidade Linear: v = ω · R\n• Aceleração Centrípeta: acp = v² / R')">
                 <div class="topic-badge">MCU</div>
                 <h2>Movimento Circular</h2>
-                <p>Trajetória circular com período e frequência. Clique para ver as fórmulas.</p>
+                <p>Trajetória circular com período e frequência. Clique para girar e ver as fórmulas.</p>
             </div>
         </div>
+
+        <!-- Simulador Interativo de Gráficos S x t e v x t -->
+        <section class="calculator-container">
+            <h2>📈 Laboratório de Gráficos: Posição (S×t) e Velocidade (v×t)</h2>
+            <p class="calc-subtitle">
+                Altere o tipo de movimento, a velocidade inicial (v₀) e a aceleração (a) para ver como mudam os gráficos ao longo de 10 segundos.
+            </p>
+
+            <div class="graph-controls">
+                <div class="input-group">
+                    <label for="modoGrafico"><strong>Tipo de Movimento:</strong></label>
+                    <select id="modoGrafico" onchange="desenharGraficos()">
+                        <option value="mru">MRU (a = 0 m/s²)</option>
+                        <option value="mruv">MRUV (com aceleração)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="v0Grafico"><strong>Velocidade Inicial v₀ (m/s):</strong> <span id="valV0">10</span></label>
+                    <input type="range" id="v0Grafico" min="0" max="30" step="1" value="10" oninput="desenharGraficos()">
+                </div>
+
+                <div class="input-group">
+                    <label for="accGrafico"><strong>Aceleração a (m/s²):</strong> <span id="valAcc">0</span></label>
+                    <input type="range" id="accGrafico" min="-5" max="8" step="1" value="0" oninput="desenharGraficos()">
+                </div>
+            </div>
+
+            <div class="graph-grid">
+                <canvas id="graficoPosicao" width="360" height="220" class="graph-canvas"></canvas>
+                <canvas id="graficoVelocidade" width="360" height="220" class="graph-canvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Jogo de Carrinho para reforçar Cinemática -->
+        <section class="calculator-container game-section">
+            <h2>🏁 Jogo do Carrinho: Desafio de Cinemática</h2>
+            <p class="calc-subtitle">
+                Controle o carrinho até a bandeira de chegada! Passe pelo trecho de <strong>MRU</strong> (mantenha velocidade constante) e reduza na zona de <strong>Frenagem / Curva</strong> para não derrapar.
+            </p>
+
+            <div class="game-hud">
+                <span id="hudPos">Posição (S): 0 m</span>
+                <span id="hudVel">Velocidade (v): 0 m/s</span>
+                <span id="hudAcc">Aceleração (a): 0 m/s²</span>
+                <span id="hudStatus">Zona: Largada</span>
+            </div>
+
+            <canvas id="pistaCanvas" width="760" height="190" class="game-canvas"></canvas>
+
+            <div class="game-controls">
+                <button type="button" class="calc-btn" onmousedown="setAcc(6)" onmouseup="setAcc(0)" onmouseleave="setAcc(0)" ontouchstart="setAcc(6)" ontouchend="setAcc(0)">Acelerar (+a)</button>
+                <button type="button" class="calc-btn game-btn-neutral" onclick="setAcc(0)">Manter (a = 0 / MRU)</button>
+                <button type="button" class="calc-btn game-btn-brake" onmousedown="setAcc(-6)" onmouseup="setAcc(0)" onmouseleave="setAcc(0)" ontouchstart="setAcc(-6)" ontouchend="setAcc(0)">Frear (-a)</button>
+                <button type="button" class="calc-btn game-btn-reset" onclick="resetGame()">Reiniciar Pista</button>
+            </div>
+
+            <div id="gameFeedback" class="calc-result" style="display: none;"></div>
+        </section>
+
+        <!-- Conversor de Unidades de Cinemática -->
+        <section class="calculator-container">
+            <h2>🔄 Conversor de Unidades de Cinemática</h2>
+            <p class="calc-subtitle">
+                Converta valores entre unidades usuais e o Sistema Internacional (SI) para resolver exercícios sem errar conta.
+            </p>
+
+            <div class="calc-controls">
+                <label for="tipoConversao"><strong>Escolha a Conversão:</strong></label>
+                <select id="tipoConversao" onchange="atualizarCamposConversor()">
+                    <option value="kmh_ms">Velocidade: km/h → m/s (÷ 3,6)</option>
+                    <option value="ms_kmh">Velocidade: m/s → km/h (× 3,6)</option>
+                    <option value="km_m">Distância: km → m (× 1000)</option>
+                    <option value="m_km">Distância: m → km (÷ 1000)</option>
+                    <option value="h_s">Tempo: horas (h) → segundos (s) (× 3600)</option>
+                    <option value="s_h">Tempo: segundos (s) → horas (h) (÷ 3600)</option>
+                </select>
+
+                <div id="camposConversor" class="calc-inputs"></div>
+
+                <button type="button" class="calc-btn" onclick="converterUnidade()">Converter Valor</button>
+            </div>
+
+            <div id="resultadoConversor" class="calc-result" style="display: none;"></div>
+        </section>
+
+        <!-- Mini-simulador de Queda Livre e Lançamento Vertical -->
+        <section class="calculator-container">
+            <h2>⬇️ Simulador de Queda Livre e Lançamento Vertical</h2>
+            <p class="calc-subtitle">
+                Calcule tempo, altura máxima e velocidade sob a ação da gravidade.
+            </p>
+
+            <div class="calc-controls">
+                <label for="tipoVertical"><strong>Escolha o Movimento Vertical:</strong></label>
+                <select id="tipoVertical" onchange="atualizarCamposVertical()">
+                    <option value="queda">Queda Livre a partir do repouso (h = ½ · g · t²)</option>
+                    <option value="lancamento">Lançamento Vertical para Cima (h_máx = v₀² / 2g)</option>
+                </select>
+
+                <div id="camposVertical" class="calc-inputs"></div>
+
+                <button type="button" class="calc-btn" onclick="simularVertical()">Simular Movimento Vertical</button>
+            </div>
+
+            <div id="resultadoVertical" class="calc-result" style="display: none;"></div>
+        </section>
 
         <section class="calculator-container">
             <h2>Calculadora Interativa de Cinemática</h2>
             <p class="calc-subtitle">Escolha o tipo de movimento, preencha os valores no Sistema Internacional (m, s, m/s) e calcule o resultado na hora.</p>
-           
+
             <div class="calc-controls">
                 <label for="tipoCalculo"><strong>Selecione a Fórmula:</strong></label>
                 <select id="tipoCalculo" onchange="atualizarCamposCalculadora()">
@@ -115,55 +212,52 @@
             <div id="resultadoCalc" class="calc-result" style="display: none;"></div>
         </section>
 
-        <!-- Tabela Resumo de Fórmulas -->
         <section class="description-box" style="margin-top: 30px;">
             <h2>Tabela Resumo das Fórmulas de Cinemática</h2>
             <div style="overflow-x: auto;">
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <thead>
                         <tr style="background-color: var(--cor-primaria-escura); color: white;">
-                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Tipo</th>
-                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Função Horária da Posição</th>
-                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Equação da Velocidade</th>
-                            <th style="padding: 12px; border: 1px solid #bde0fe; text-align: left;">Torricelli</th>
+                            <th style="padding: 12px; border: 1px solid #ffd166; text-align: left;">Tipo</th>
+                            <th style="padding: 12px; border: 1px solid #ffd166; text-align: left;">Função Horária da Posição</th>
+                            <th style="padding: 12px; border: 1px solid #ffd166; text-align: left;">Equação da Velocidade</th>
+                            <th style="padding: 12px; border: 1px solid #ffd166; text-align: left;">Torricelli</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;"><strong>MRU</strong></td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">S = S₀ + v · t</td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">v = constante</td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">—</td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;"><strong>MRU</strong></td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">S = S₀ + v · t</td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">v = constante</td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">—</td>
                         </tr>
-                        <tr style="background-color: #f8fbff;">
-                            <td style="padding: 10px; border: 1px solid #bde0fe;"><strong>MRUV</strong></td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">S = S₀ + v₀t + ½at²</td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">v = v₀ + a · t</td>
-                            <td style="padding: 10px; border: 1px solid #bde0fe;">v² = v₀² + 2aΔS</td>
+                        <tr style="background-color: #fffaf0;">
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;"><strong>MRUV</strong></td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">S = S₀ + v₀t + ½at²</td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">v = v₀ + a · t</td>
+                            <td style="padding: 10px; border: 1px solid #e2d9c8;">v² = v₀² + 2aΔS</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Link para Simuladores Interativos PhET Colorado -->
-        <section class="description-box" style="border-left: 6px solid #0077b6; background: linear-gradient(135deg, #e0f2fe, #f0f8ff);">
+        <section class="description-box phet-box">
             <h2>🧪 Laboratório Virtual e Testes Interativos (PhET Colorado)</h2>
             <p>
                 Quer testar os conceitos de cinemática na prática com simulações visuais em tempo real? Acesse os laboratórios virtuais gratuitos do <strong>PhET Colorado</strong>:
             </p>
             <p style="text-align: center; margin-top: 20px;">
-                <a href="https://phet.colorado.edu/pt/simulations/filter?subjects=physics&q=motion" target="_blank" rel="noopener noreferrer" style="background-color: #0077b6; color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                <a href="https://phet.colorado.edu/pt/simulations/filter?subjects=physics&q=motion" target="_blank" rel="noopener noreferrer" class="phet-btn">
                     Acessar Simuladores de Movimento no PhET Colorado 🚀
                 </a>
             </p>
         </section>
 
-        <!-- Quiz Completo com 6 Perguntas -->
         <section class="calculator-container">
             <h2>Quiz Relâmpago: 6 Desafios de Cinemática</h2>
-            <p class="calc-subtitle">Responda às questões abaixo e clique no botão para conferir seu desempenho:</p>
-            
+            <p class="calc-subtitle">Responda às questões abaixo e clique no botão para conferir seu desempenho e o gabarito explicado:</p>
+
             <div style="text-align: left; max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px;">
                 <div>
                     <p><strong>1. Um carro em MRU percorre 120 km em 2 horas. Qual é a sua velocidade média?</strong></p>
@@ -209,17 +303,18 @@
 
                 <button type="button" class="calc-btn" onclick="verificarQuiz6()">Verificar Respostas do Quiz</button>
                 <div id="resultadoQuiz" style="margin-top: 15px; font-size: 1.2em; font-weight: bold; text-align: center;"></div>
+                <div id="gabaritoQuiz" class="quiz-gabarito" style="display: none;"></div>
             </div>
         </section>
 
         <div class="video-container">
             <h2>Aula Introdutória: Conceitos Básicos da Cinemática</h2>
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Aula de Cinemática" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/9v5N64oM1xQ" title="Aula de Cinemática" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         <div class="characteristics-container">
             <h2>Todos os Tópicos da Cinemática</h2>
-           
+
             <div class="characteristic-box mru">
                 <h3>1. Conceitos Fundamentais</h3>
                 <p><strong>Referencial:</strong> Ponto adotado para definir se um corpo está em repouso ou movimento. <strong>Velocidade Média (v = ΔS/Δt):</strong> Razão entre o deslocamento e o tempo.</p>
@@ -246,9 +341,11 @@
         <p>© 2026 Portal de Física — Explorando as leis do movimento.</p>
     </footer>
 
+    <button type="button" id="btnTopo" class="btn-topo" onclick="voltarAoTopo()" title="Voltar ao topo">↑ Topo</button>
+
     <div id="formulaModal" class="modal" onclick="closeFormula()">
-        <span class="close">×</span>
-        <div class="modal-content" id="modalText"></div>
+        <span class="close" onclick="closeFormula()">×</span>
+        <div class="modal-content" id="modalText" onclick="event.stopPropagation()"></div>
     </div>
 
     <script>
@@ -269,6 +366,11 @@
             document.body.classList.toggle('high-contrast');
         });
 
+        function flipAndShowFormula(cardElement, texto) {
+            cardElement.classList.toggle('is-flipped');
+            showFormula(texto);
+        }
+
         function showFormula(texto) {
             const modal = document.getElementById('formulaModal');
             const modalText = document.getElementById('modalText');
@@ -280,6 +382,126 @@
             document.getElementById('formulaModal').style.display = "none";
         }
 
+        /* --- Botão Voltar ao Topo --- */
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('btnTopo');
+            if (window.scrollY > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        function voltarAoTopo() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* --- Conversor de Unidades --- */
+        function atualizarCamposConversor() {
+            const tipo = document.getElementById('tipoConversao').value;
+            const container = document.getElementById('camposConversor');
+            const labels = {
+                kmh_ms: 'Valor em km/h:',
+                ms_kmh: 'Valor em m/s:',
+                km_m: 'Valor em km:',
+                m_km: 'Valor em metros (m):',
+                h_s: 'Valor em horas (h):',
+                s_h: 'Valor em segundos (s):'
+            };
+
+            container.innerHTML = `
+                <div class="input-group">
+                    <label for="valorConversao">${labels[tipo]}</label>
+                    <input type="number" step="any" id="valorConversao" placeholder="Ex: 72">
+                </div>
+            `;
+        }
+
+        function converterUnidade() {
+            const tipo = document.getElementById('tipoConversao').value;
+            const val = parseFloat(document.getElementById('valorConversao').value);
+            const res = document.getElementById('resultadoConversor');
+            res.style.display = 'block';
+
+            if (isNaN(val)) {
+                res.innerText = 'Por favor, digite um número válido para converter.';
+                return;
+            }
+
+            let convertido = 0;
+            let texto = '';
+
+            if (tipo === 'kmh_ms') {
+                convertido = val / 3.6;
+                texto = `${val} km/h = ${convertido.toFixed(2)} m/s`;
+            } else if (tipo === 'ms_kmh') {
+                convertido = val * 3.6;
+                texto = `${val} m/s = ${convertido.toFixed(2)} km/h`;
+            } else if (tipo === 'km_m') {
+                convertido = val * 1000;
+                texto = `${val} km = ${convertido.toFixed(2)} m`;
+            } else if (tipo === 'm_km') {
+                convertido = val / 1000;
+                texto = `${val} m = ${convertido.toFixed(3)} km`;
+            } else if (tipo === 'h_s') {
+                convertido = val * 3600;
+                texto = `${val} h = ${convertido.toFixed(0)} s`;
+            } else if (tipo === 's_h') {
+                convertido = val / 3600;
+                texto = `${val} s = ${convertido.toFixed(4)} h`;
+            }
+
+            res.innerText = texto;
+        }
+
+        /* --- Simulador de Queda Livre e Lançamento Vertical --- */
+        function atualizarCamposVertical() {
+            const tipo = document.getElementById('tipoVertical').value;
+            const container = document.getElementById('camposVertical');
+
+            if (tipo === 'queda') {
+                container.innerHTML = `
+                    <div class="input-group"><label>Altura inicial h (m):</label><input type="number" step="any" id="hQueda" placeholder="Ex: 45"></div>
+                    <div class="input-group"><label>Gravidade g (m/s²):</label><input type="number" step="any" id="gQueda" value="10"></div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="input-group"><label>Velocidade inicial v₀ (m/s):</label><input type="number" step="any" id="v0Lanc" placeholder="Ex: 20"></div>
+                    <div class="input-group"><label>Gravidade g (m/s²):</label><input type="number" step="any" id="gLanc" value="10"></div>
+                `;
+            }
+        }
+
+        function simularVertical() {
+            const tipo = document.getElementById('tipoVertical').value;
+            const res = document.getElementById('resultadoVertical');
+            res.style.display = 'block';
+
+            if (tipo === 'queda') {
+                const h = parseFloat(document.getElementById('hQueda').value);
+                const g = parseFloat(document.getElementById('gQueda').value);
+                if (isNaN(h) || h < 0 || isNaN(g) || g <= 0) {
+                    res.innerText = 'Preencha altura (>= 0) e gravidade (> 0) válidas.';
+                    return;
+                }
+                const tQueda = Math.sqrt((2 * h) / g);
+                const vFinal = g * tQueda;
+                res.innerText = `Tempo de queda: ${tQueda.toFixed(2)} s | Velocidade ao chegar: ${vFinal.toFixed(2)} m/s`;
+            } else {
+                const v0 = parseFloat(document.getElementById('v0Lanc').value);
+                const g = parseFloat(document.getElementById('gLanc').value);
+                if (isNaN(v0) || v0 < 0 || isNaN(g) || g <= 0) {
+                    res.innerText = 'Preencha velocidade inicial (>= 0) e gravidade (> 0) válidas.';
+                    return;
+                }
+                const tSubida = v0 / g;
+                const hMax = (v0 * v0) / (2 * g);
+                const tTotal = 2 * tSubida;
+                res.innerText = `Altura máxima: ${hMax.toFixed(2)} m | Tempo de subida: ${tSubida.toFixed(2)} s | Tempo total no ar: ${tTotal.toFixed(2)} s`;
+            }
+        }
+
+        /* --- Calculadora de Cinemática --- */
         function atualizarCamposCalculadora() {
             const tipo = document.getElementById('tipoCalculo').value;
             const container = document.getElementById('camposEntrada');
@@ -287,29 +509,27 @@
 
             if (tipo === 'vm') {
                 container.innerHTML = `
-                    <div class="input-group"><label>Variação de Espaço (ΔS em metros):</label><input type="number" id="deltaS" placeholder="Ex: 100"></div>
-                    <div class="input-group"><label>Variação de Tempo (Δt em segundos):</label><input type="number" id="deltaT" placeholder="Ex: 10"></div>
+                    <div class="input-group"><label>Variação de Espaço (ΔS em metros):</label><input type="number" step="any" id="deltaS" placeholder="Ex: 100"></div>
+                    <div class="input-group"><label>Variação de Tempo (Δt em segundos):</label><input type="number" step="any" id="deltaT" placeholder="Ex: 10"></div>
                 `;
             } else if (tipo === 'mru') {
                 container.innerHTML = `
-                    <div class="input-group"><label>Posição Inicial (S₀):</label><input type="number" id="s0" placeholder="Ex: 10"></div>
-                    <div class="input-group"><label>Velocidade (v):</label><input type="number" id="v" placeholder="Ex: 20"></div>
-                    <div class="input-group"><label>Tempo (t):</label><input type="number" id="t" placeholder="Ex: 5"></div>
+                    <div class="input-group"><label>Posição Inicial (S₀):</label><input type="number" step="any" id="s0" placeholder="Ex: 10"></div>
+                    <div class="input-group"><label>Velocidade (v):</label><input type="number" step="any" id="v" placeholder="Ex: 20"></div>
+                    <div class="input-group"><label>Tempo (t):</label><input type="number" step="any" id="t" placeholder="Ex: 5"></div>
                 `;
             } else if (tipo === 'mruv') {
                 container.innerHTML = `
-                    <div class="input-group"><label>Velocidade Inicial (v₀):</label><input type="number" id="v0" placeholder="Ex: 0"></div>
-                    <div class="input-group"><label>Aceleração (a):</label><input type="number" id="a" placeholder="Ex: 2"></div>
-                    <div class="input-group"><label>Tempo (t):</label><input type="number" id="t_mruv" placeholder="Ex: 4"></div>
+                    <div class="input-group"><label>Velocidade Inicial (v₀):</label><input type="number" step="any" id="v0" placeholder="Ex: 0"></div>
+                    <div class="input-group"><label>Aceleração (a):</label><input type="number" step="any" id="a" placeholder="Ex: 2"></div>
+                    <div class="input-group"><label>Tempo (t):</label><input type="number" step="any" id="t_mruv" placeholder="Ex: 4"></div>
                 `;
             } else if (tipo === 'queda') {
                 container.innerHTML = `
-                    <div class="input-group"><label>Tempo de Queda (t em segundos):</label><input type="number" id="t_queda" placeholder="Ex: 3"></div>
+                    <div class="input-group"><label>Tempo de Queda (t em segundos):</label><input type="number" step="any" id="t_queda" placeholder="Ex: 3"></div>
                 `;
             }
         }
-
-        document.addEventListener("DOMContentLoaded", atualizarCamposCalculadora);
 
         function calcularCinematica() {
             const tipo = document.getElementById('tipoCalculo').value;
@@ -317,48 +537,221 @@
             resultadoDiv.style.display = "block";
 
             if (tipo === 'vm') {
-                let dS = parseFloat(document.getElementById('deltaS').value);
-                let dT = parseFloat(document.getElementById('deltaT').value);
+                const dS = parseFloat(document.getElementById('deltaS').value);
+                const dT = parseFloat(document.getElementById('deltaT').value);
                 if (isNaN(dS) || isNaN(dT) || dT === 0) {
                     resultadoDiv.innerText = "Por favor, preencha valores válidos (Δt não pode ser zero).";
                     return;
                 }
-                let vm = dS / dT;
+                const vm = dS / dT;
                 resultadoDiv.innerText = `Velocidade Média (v) = ${vm.toFixed(2)} m/s`;
             } else if (tipo === 'mru') {
-                let s0 = parseFloat(document.getElementById('s0').value) || 0;
-                let v = parseFloat(document.getElementById('v').value) || 0;
-                let t = parseFloat(document.getElementById('t').value) || 0;
-                let s = s0 + (v * t);
-                resultadoDiv.innerText = `Posição Final (S) = ${s.toFixed(2)} metros`;
+                const s0 = parseFloat(document.getElementById('s0').value) || 0;
+                const v = parseFloat(document.getElementById('v').value) || 0;
+                const t = parseFloat(document.getElementById('t').value) || 0;
+                const s = s0 + (v * t);
+                resultadoDiv.innerText = `Posição Final (S) = ${s.toFixed(2)} m`;
             } else if (tipo === 'mruv') {
-                let v0 = parseFloat(document.getElementById('v0').value) || 0;
-                let a = parseFloat(document.getElementById('a').value) || 0;
-                let t = parseFloat(document.getElementById('t_mruv').value) || 0;
-                let v = v0 + (a * t);
-                resultadoDiv.innerText = `Velocidade Final (v) = ${v.toFixed(2)} m/s`;
+                const v0 = parseFloat(document.getElementById('v0').value) || 0;
+                const a = parseFloat(document.getElementById('a').value) || 0;
+                const t = parseFloat(document.getElementById('t_mruv').value) || 0;
+                const vFinal = v0 + (a * t);
+                const sFinal = (v0 * t) + (0.5 * a * t * t);
+                resultadoDiv.innerText = `Velocidade Final (v) = ${vFinal.toFixed(2)} m/s | Deslocamento (ΔS) = ${sFinal.toFixed(2)} m`;
             } else if (tipo === 'queda') {
-                let t = parseFloat(document.getElementById('t_queda').value) || 0;
-                let g = 10;
-                let h = 0.5 * g * (t ** 2);
-                let v = g * t;
-                resultadoDiv.innerText = `Altura da Queda (h) = ${h.toFixed(2)} m | Velocidade de Impacto = ${v.toFixed(2)} m/s`;
+                const t = parseFloat(document.getElementById('t_queda').value);
+                if (isNaN(t) || t < 0) {
+                    resultadoDiv.innerText = "Por favor, informe um tempo válido (>= 0).";
+                    return;
+                }
+                const g = 10;
+                const h = 0.5 * g * t * t;
+                const v = g * t;
+                resultadoDiv.innerText = `Altura de Queda (h) = ${h.toFixed(2)} m | Velocidade (v) = ${v.toFixed(2)} m/s`;
             }
         }
 
+        /* --- Gráficos S x t e v x t --- */
+        function desenharGraficos() {
+            const modo = document.getElementById('modoGrafico').value;
+            const accInput = document.getElementById('accGrafico');
+            if (modo === 'mru') {
+                accInput.value = 0;
+                accInput.disabled = true;
+            } else {
+                accInput.disabled = false;
+            }
+
+            const v0 = parseFloat(document.getElementById('v0Grafico').value) || 0;
+            const a = modo === 'mru' ? 0 : (parseFloat(accInput.value) || 0);
+
+            document.getElementById('valV0').innerText = v0;
+            document.getElementById('valAcc').innerText = a;
+
+            desenharCanvasGrafico('graficoPosicao', 'S (m)', (t) => v0 * t + 0.5 * a * t * t, '#d62828');
+            desenharCanvasGrafico('graficoVelocidade', 'v (m/s)', (t) => v0 + a * t, '#0077b6');
+        }
+
+        function desenharCanvasGrafico(id, labelY, fn, corLinha) {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            const padLeft = 45;
+            const padRight = 20;
+            const padTop = 25;
+            const padBottom = 35;
+            const plotW = w - padLeft - padRight;
+            const plotH = h - padTop - padBottom;
+
+            const valores = [];
+            for (let t = 0; t <= 10; t += 0.5) {
+                valores.push(fn(t));
+            }
+            const minVal = Math.min(0, ...valores);
+            const maxVal = Math.max(10, ...valores);
+            const span = maxVal - minVal || 1;
+
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(padLeft, padTop);
+            ctx.lineTo(padLeft, padTop + plotH);
+            ctx.lineTo(padLeft + plotW, padTop + plotH);
+            ctx.stroke();
+
+            ctx.fillStyle = '#1d2d44';
+            ctx.font = 'bold 12px Roboto, sans-serif';
+            ctx.fillText(labelY, 8, padTop - 6);
+            ctx.fillText('t (s)', padLeft + plotW - 22, padTop + plotH + 24);
+
+            ctx.strokeStyle = corLinha;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            for (let i = 0; i <= 20; i++) {
+                const t = (i / 20) * 10;
+                const yVal = fn(t);
+                const px = padLeft + (t / 10) * plotW;
+                const py = padTop + plotH - ((yVal - minVal) / span) * plotH;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.stroke();
+        }
+
+        /* --- Jogo do Carrinho --- */
+        let carPos = 0;
+        let carVel = 0;
+        let carAcc = 0;
+        let gameFinished = false;
+
+        function setAcc(novaAcc) {
+            if (!gameFinished) carAcc = novaAcc;
+        }
+
+        function resetGame() {
+            carPos = 0;
+            carVel = 0;
+            carAcc = 0;
+            gameFinished = false;
+            document.getElementById('gameFeedback').style.display = 'none';
+        }
+
+        function atualizarJogo() {
+            const canvas = document.getElementById('pistaCanvas');
+            const ctx = canvas.getContext('2d');
+            const dt = 0.05;
+
+            if (!gameFinished) {
+                carVel = Math.max(0, carVel + carAcc * dt);
+                carPos += carVel * dt;
+            }
+
+            let zona = 'Largada';
+            if (carPos >= 35 && carPos < 75) zona = 'Trecho MRU';
+            else if (carPos >= 75 && carPos < 100) zona = 'Frenagem / Curva';
+            else if (carPos >= 100) {
+                zona = 'Chegada';
+                if (!gameFinished) {
+                    gameFinished = true;
+                    carAcc = 0;
+                    const fb = document.getElementById('gameFeedback');
+                    fb.style.display = 'block';
+                    fb.innerText = carVel <= 14
+                        ? `🏁 Chegada concluída com segurança! Velocidade final: ${carVel.toFixed(1)} m/s.`
+                        : `⚠️ Você cruzou a chegada rápido demais (${carVel.toFixed(1)} m/s) na curva! Tente frear antes de 100 m.`;
+                }
+            }
+
+            document.getElementById('hudPos').innerText = `Posição (S): ${carPos.toFixed(1)} m`;
+            document.getElementById('hudVel').innerText = `Velocidade (v): ${carVel.toFixed(1)} m/s`;
+            document.getElementById('hudAcc').innerText = `Aceleração (a): ${carAcc.toFixed(1)} m/s²`;
+            document.getElementById('hudStatus').innerText = `Zona: ${zona}`;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#1d2d44';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(30, 85, 700, 36);
+
+            ctx.strokeStyle = '#ffd166';
+            ctx.setLineDash([12, 10]);
+            ctx.beginPath();
+            ctx.moveTo(30, 103);
+            ctx.lineTo(730, 103);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            const xCar = 30 + Math.min(carPos / 100, 1) * 670;
+            ctx.fillStyle = '#d62828';
+            ctx.fillRect(xCar - 18, 76, 36, 18);
+            ctx.fillStyle = '#ffd166';
+            ctx.fillRect(xCar - 10, 72, 18, 6);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(705, 55, 6, 66);
+        }
+
+        /* --- Quiz de 6 Questões --- */
         function verificarQuiz6() {
+            const respostasCorretas = {
+                p1: { certa: 'certo', explicacao: 'v = 120 km / 2 h = 60 km/h.' },
+                p2: { certa: 'certo', explicacao: 'No MRU a velocidade é constante, logo a aceleração é zero.' },
+                p3: { certa: 'certo', explicacao: 'Torricelli relaciona velocidades e deslocamento sem depender do tempo: v² = v₀² + 2aΔS.' },
+                p4: { certa: 'certo', explicacao: 'Na queda livre ideal, atua apenas a gravidade (g).' },
+                p5: { certa: 'certo', explicacao: 'No MCU, o módulo da velocidade escalar é constante, enquanto a direção muda.' },
+                p6: { certa: 'certo', explicacao: 'S = 10 + 5 · 4 = 30 m.' }
+            };
+
             let acertos = 0;
-            if (document.getElementById('p1_certa').checked) acertos++;
-            if (document.getElementById('p2_certa').checked) acertos++;
-            if (document.getElementById('p3_certa').checked) acertos++;
-            if (document.getElementById('p4_certa').checked) acertos++;
-            if (document.getElementById('p5_certa').checked) acertos++;
-            if (document.getElementById('p6_certa').checked) acertos++;
+            let itensGabarito = '';
+
+            for (let i = 1; i <= 6; i++) {
+                const chave = 'p' + i;
+                const marcada = document.querySelector(`input[name="${chave}"]:checked`);
+                const acertou = marcada && marcada.value === respostasCorretas[chave].certa;
+                if (acertou) acertos++;
+                itensGabarito += `<li><strong>Questão ${i}:</strong> ${acertou ? '✅ Correta' : '❌ Incorreta'} — ${respostasCorretas[chave].explicacao}</li>`;
+            }
 
             const resDiv = document.getElementById('resultadoQuiz');
-            resDiv.style.color = acertos === 6 ? "#0077b6" : "#023e8a";
-            resDiv.innerText = `🎯 Você acertou ${acertos} de 6 perguntas! (${(acertos/6*100).toFixed(0)}%)`;
+            resDiv.innerText = `Você acertou ${acertos} de 6 questões!`;
+
+            const gabDiv = document.getElementById('gabaritoQuiz');
+            gabDiv.style.display = 'block';
+            gabDiv.innerHTML = `<strong>Gabarito Explicado:</strong><ul>${itensGabarito}</ul>`;
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            atualizarCamposConversor();
+            atualizarCamposVertical();
+            atualizarCamposCalculadora();
+            desenharGraficos();
+            setInterval(atualizarJogo, 50);
+        });
     </script>
 </body>
 </html>
